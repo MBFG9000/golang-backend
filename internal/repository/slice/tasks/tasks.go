@@ -1,9 +1,9 @@
-package repository
+package slicerepo
 
 import (
 	"fmt"
-	"taskmanager/backend/internal/model"
-	"taskmanager/backend/internal/utils"
+	"taskmanager/internal/model"
+	"taskmanager/internal/utils"
 )
 
 type MemoryTaskRepository struct {
@@ -39,7 +39,7 @@ func (r *MemoryTaskRepository) GetTaskById(id string) (*model.Task, error) {
 
 	}
 
-	return nil, utils.ErrTaskNotFound
+	return nil, utils.ErrObjectNotFound
 }
 
 func (r *MemoryTaskRepository) CreateTask(task model.Task) error {

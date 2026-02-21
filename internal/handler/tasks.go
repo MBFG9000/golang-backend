@@ -3,8 +3,8 @@ package handler
 import (
 	"encoding/json"
 	"net/http"
-	"taskmanager/backend/internal/service"
-	"taskmanager/backend/internal/utils"
+	service "taskmanager/internal/service/taskservice"
+	"taskmanager/internal/utils"
 )
 
 type TaskHandler struct {
@@ -37,7 +37,7 @@ func (h *TaskHandler) GetTasks(w http.ResponseWriter, r *http.Request) {
 
 		if err != nil {
 			switch err {
-			case utils.ErrTaskNotFound:
+			case utils.ErrObjectNotFound:
 				w.WriteHeader(http.StatusNotFound)
 				json.NewEncoder(w).Encode(ErrorResponse{Error: err.Error()})
 			case utils.ErrIDEmpty, utils.ErrIDNotNumber, utils.ErrIDNotPositive:
@@ -103,7 +103,7 @@ func (h *TaskHandler) UpdateTaskStatus(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		switch err {
-		case utils.ErrTaskNotFound:
+		case utils.ErrObjectNotFound:
 			w.WriteHeader(http.StatusNotFound)
 			json.NewEncoder(w).Encode(ErrorResponse{Error: err.Error()})
 		case utils.ErrIDEmpty, utils.ErrIDNotNumber, utils.ErrIDNotPositive:

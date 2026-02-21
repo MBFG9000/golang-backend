@@ -1,6 +1,8 @@
 package repository
 
-import "taskmanager/backend/internal/model"
+import (
+	"taskmanager/internal/model"
+)
 
 type TaskRepository interface {
 	GetAllTasks() ([]model.Task, error)

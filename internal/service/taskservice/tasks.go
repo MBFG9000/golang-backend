@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"taskmanager/backend/internal/model"
-	"taskmanager/backend/internal/repository"
-	"taskmanager/backend/internal/utils"
+	"taskmanager/internal/model"
+	"taskmanager/internal/repository"
+	"taskmanager/internal/utils"
 )
 
 //***********************
