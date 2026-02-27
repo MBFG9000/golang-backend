@@ -16,7 +16,7 @@ func Run() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	config.LoadEnviroment()
+	//config.LoadEnviroment()
 
 	dbConfig := config.GetConfig()
 
