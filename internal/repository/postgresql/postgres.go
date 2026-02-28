@@ -41,7 +41,7 @@ func NewPostgres(ctx context.Context, cfg *modules.PostgreConfig) *Dialect {
 
 	fmt.Println(version)
 
-	AutoMigrate(cfg)
+	//AutoMigrate(cfg)
 
 	return &Dialect{
 		DB: db,

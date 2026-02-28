@@ -10,7 +10,7 @@ services:
         condition: service_healthy
     env_file: ".env"
     ports:
-      - "8000:8080"
+      - "8080:8080"
   db:
     image: postgres:17.0
     env_file: "postgres.env"
@@ -20,6 +20,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
+      - ./database/migrations/:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
 
 
