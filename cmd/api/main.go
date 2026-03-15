@@ -1,7 +1,7 @@
 package main
 
 import (
-	"taskmanager/internal/app"
+	"github.com/MBFG9000/golang-backend/internal/app"
 )
 
 func main() {

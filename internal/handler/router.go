@@ -6,6 +6,7 @@ import (
 
 func SetupRoutes(mux *http.ServeMux, userHandler *UserHandler) {
 	mux.HandleFunc("GET /users", userHandler.GetUsers)
+	mux.HandleFunc("GET /users/common-friends", userHandler.GetCommonFriends)
 	mux.HandleFunc("GET /users/{id}", userHandler.GetUserByID)
 	mux.HandleFunc("POST /users", userHandler.CreateUser)
 	mux.HandleFunc("PUT /users/{id}", userHandler.UpdateUserByID)

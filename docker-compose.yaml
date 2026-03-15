@@ -20,7 +20,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - ./database/migrations/:/docker-entrypoint-initdb.d
+      - ./database/migrations/up/:/docker-entrypoint-initdb.d
       - db-data:/var/lib/postgresql/data
 
 

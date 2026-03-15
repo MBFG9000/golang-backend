@@ -3,7 +3,7 @@ package config
 import (
 	"fmt"
 	"os"
-	"taskmanager/pkg/modules"
+	"github.com/MBFG9000/golang-backend/pkg/modules"
 
 	"github.com/joho/godotenv"
 )

@@ -2,14 +2,14 @@ package app
 
 import (
 	"context"
+	"github.com/MBFG9000/golang-backend/internal/config"
+	"github.com/MBFG9000/golang-backend/internal/handler"
+	"github.com/MBFG9000/golang-backend/internal/middleware"
+	"github.com/MBFG9000/golang-backend/internal/repository"
+	postgres "github.com/MBFG9000/golang-backend/internal/repository/postgresql"
+	userservice "github.com/MBFG9000/golang-backend/internal/service/users"
 	"log"
 	"net/http"
-	"taskmanager/internal/config"
-	"taskmanager/internal/handler"
-	"taskmanager/internal/middleware"
-	"taskmanager/internal/repository"
-	postgres "taskmanager/internal/repository/postgresql"
-	"taskmanager/internal/service/userservice"
 )
 
 func Run() {
@@ -24,9 +24,9 @@ func Run() {
 
 	repositories := repository.NewRepositories(postgres)
 
-	userUseCase := userservice.NewUserUseCase(repositories)
+	userService := userservice.NewUserService(repositories)
 
-	userHandler := handler.NewUserHandler(userUseCase)
+	userHandler := handler.NewUserHandler(userService)
 
 	mux := http.NewServeMux()
 

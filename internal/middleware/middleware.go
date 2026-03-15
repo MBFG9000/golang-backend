@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"taskmanager/internal/config"
+	"github.com/MBFG9000/golang-backend/internal/config"
 	"time"
 )
 

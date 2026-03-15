@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 
-	"taskmanager/internal/config"
-	"taskmanager/pkg/modules"
+	"github.com/MBFG9000/golang-backend/internal/config"
+	"github.com/MBFG9000/golang-backend/pkg/modules"
 
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/jmoiron/sqlx"
