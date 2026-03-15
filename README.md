@@ -1,11 +1,11 @@
-# Practice 3 API
+# Practice 4 API
 
-Go REST API for managing users
+Go REST API for managing users, containerized with Docker.
 
 ## Requirements
 
-- Go 1.22+
-- PostgreSQL
+- Docker
+- Docker Compose
 
 ## Setup
 
@@ -21,43 +21,47 @@ cd <repository-name>
 Create a `.env` file in the **root folder** of the project:
 
 ```
-HOST="localhost"
+HOST="db"
 DB_USERNAME="postgres"
-PASSWORD="ADMIN"
-DATABASE_NAME="go_db"
+PASSWORD="postgres"
+DATABASE_NAME="mydb"
 SSL_MODE="disable"
 API_KEY_HEADER="X-API-KEY"
-VALID_API_KEY="secret12345"
+VALID_API_KEY="secretkey"
 ```
 
-> ⚠️ The `.env` file must be in the root folder, otherwise the app won't find it.
+### 3. Create `postgres.env` file
 
-### 3. Install dependencies
+Create a `postgres.env` file in the **root folder** of the project:
 
-```bash
-go mod tidy
+```
+POSTGRES_PASSWORD=postgres
+POSTGRES_USER=postgres
+POSTGRES_DB=mydb
 ```
 
 ### 4. Run the application
 
-Always run from the **root folder**:
-
 ```bash
-go run cmd/api/main.go
+docker-compose up --build
 ```
 
-> ⚠️ Do not run from inside `cmd/api/` — migrations and `.env` are resolved relative to the root.
+The app will be available at `http://localhost:8080`.
+
+> ⚠️ The application waits for the database to be healthy before starting.
 
 ## Authentication
 
 All API endpoints are protected by API Key authentication.
 
 Add the API key to every request via header:
+
 ```
 X-API-KEY: secret12345
 ```
 
 If the header is missing or invalid, the API will return:
+
 ```json
 {
   "error": "unauthorized"
@@ -67,16 +71,17 @@ If the header is missing or invalid, the API will return:
 with status code `401 Unauthorized`.
 
 ### Example request
+
 ```bash
 curl -H "X-API-KEY: secret12345" http://localhost:8080/users
 ```
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET    | `/users` | Get all users |
-| GET    | `/users/{id}` | Get user by ID |
-| POST   | `/users` | Create user |
-| PUT    | `/users/{id}` | Update user |
-| DELETE | `/users/{id}` | Delete user |
+| Method | Endpoint      | Description     |
+|--------|---------------|-----------------|
+| GET    | `/users`      | Get all users   |
+| GET    | `/users/{id}` | Get user by ID  |
+| POST   | `/users`      | Create user     |
+| PUT    | `/users/{id}` | Update user     |
+| DELETE | `/users/{id}` | Delete user     |

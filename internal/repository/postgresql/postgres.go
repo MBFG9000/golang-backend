@@ -41,7 +41,7 @@ func NewPostgres(ctx context.Context, cfg *modules.PostgreConfig) *Dialect {
 
 	fmt.Println(version)
 
-	AutoMigrate(cfg)
+	//AutoMigrate(cfg)
 
 	return &Dialect{
 		DB: db,
@@ -49,7 +49,7 @@ func NewPostgres(ctx context.Context, cfg *modules.PostgreConfig) *Dialect {
 }
 
 func AutoMigrate(cfg *modules.PostgreConfig) {
-	sourceURL := "file://database/migrations"
+	sourceURL := "file:///database/migrations"
 	databaseURL := config.GetConnURL(cfg)
 
 	m, err := migrate.New(sourceURL, databaseURL)
